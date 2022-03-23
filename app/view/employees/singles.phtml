@@ -1,0 +1,82 @@
+<?php include VIEW . 'header.phtml'; ?>
+<div class="container">
+
+    <div class="page-header d-flex align-items-center justify-content-between">
+        <h1>
+            Employee Info 
+        </h1>
+        <a href="/employees" style="align: right">< Back to Employees</a>
+    </div>
+
+    <?php 
+
+        if(array_key_exists('employees', $this->view_data)) {
+            
+            $table = "<table class='table table-striped'>";
+            
+            $emp_info = $this->view_data['employees'][0];
+            
+            $table .= "<tr>";
+            $table .= '<td><strong>Employee ID</strong></td>';
+            $table .= '<td>' . $emp_info['employee_id'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>First Name</strong></td>';
+            $table .= '<td>' . $emp_info['first_name'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Last Name</strong></td>';
+            $table .= '<td>' . $emp_info['last_name'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Email</strong></td>';
+            $table .= '<td><a href="mailto:'.$emp_info['email'].'">' . $emp_info['email'] . '</a></td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Job Title</strong></td>';
+            $table .= '<td>' . $emp_info['job_title'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Phone Number</strong></td>';
+            $table .= '<td>' . $emp_info['phone_number'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Date Hired</strong></td>';
+            $table .= '<td>' . $emp_info['hire_date'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Salary</strong></td>';
+            $table .= '<td>' . $emp_info['salary'] . '</td>';
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Manager</strong></td>';
+            if($emp_info['manager_id'] != "") {
+                $table .= '<td><a href="/employees/index/'. $emp_info['manager_id'] .'">See Manager Info</a></td>';
+            } else {
+                $table .= '<td>n/a</td>';
+            }
+            $table .= '</tr>';
+
+            $table .= "<tr>";
+            $table .= '<td><strong>Department</strong></td>';
+            $table .= '<td><a href="/departments/index/'. $emp_info['department_id'] .'">View Department Info</a></td>';
+            //$emp_info['department_id']
+            $table .= '</tr>';
+
+            $table .= '</table>';
+
+            echo $table;
+
+        }
+
+    ?>
+</div>
+<?php include VIEW . 'footer.phtml'; ?>
