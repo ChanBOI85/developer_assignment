@@ -12,6 +12,7 @@ define('CONTROLLER', ROOT . 'app' . DIRECTORY_SEPARATOR . 'controller' . DIRECTO
 $modules = [ROOT,APP,CORE,CONTROLLER,DATA];
 
 set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, $modules));
-spl_autoload_register('spl_autoload');
+spl_autoload_register('spl_autoload', true);
+
 
 new Application;
